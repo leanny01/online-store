@@ -6,8 +6,9 @@ import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import userEvent from "@testing-library/user-event";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CardDropdown from "../cart-dropdown/cart-dropdown.component";
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link to="/" className="logo-container">
       <Logo />
@@ -29,14 +30,20 @@ const Header = ({ currentUser }) => (
         </Link>
       )}
       <CartIcon />
+      {hidden ? null : <CardDropdown />}
     </div>
   </div>
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  //user:{currentUser} Give me value, here currentUser,that are nested into user
+
   // state = root store
   //user = user from the root store
   // currentUser from the user reducer
-  currentUser: state.user.currentUser,
+  // currentUser: state.user.currentUser,
+
+  currentUser,
+  hidden,
 });
 export default connect(mapStateToProps)(Header);
