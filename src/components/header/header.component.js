@@ -5,6 +5,7 @@ import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import userEvent from "@testing-library/user-event";
+import CartIcon from "../../components/cart-icon/cart-icon.component";
 
 const Header = ({ currentUser }) => (
   <div className="header">
@@ -23,10 +24,11 @@ const Header = ({ currentUser }) => (
           SIGN OUT
         </div>
       ) : (
-        <Link className="option" to="/signinsignup">
+        <Link className="option" to="/signin">
           SIGNIN
         </Link>
       )}
+      <CartIcon />
     </div>
   </div>
 );
